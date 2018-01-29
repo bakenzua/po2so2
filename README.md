@@ -6,9 +6,9 @@ Conversions between oxygen saturations and oxygen partial pressures of human blo
 
 Implemented as a learning exercise but also usable for calculations.
 
-Hill originally proposed
+Archibald Hill<sup>[1](#reference1)</sup> originally proposed an equation to describe the sigmoidal O<sub>2</sub> - Haemoglobin dissociation curve. The 'Hill Equation' describes the fraction of ligand binding sites, on a macromolecule such as a protein, occupied by a ligand, as a function of the ligand concentration. It is a useful description for the degree of cooperativity of a ligand binding to a receptor. The Hill coefficient provides a way to quantify the degree of interaction between ligand binding sites, and describes the gradient of the curve.
 
-Severinghaus<sup>[2](#reference2)</sup> and Thomas<sup>[3](#reference3)</sup> fitted curves to experimental data in the 1970s and published algorithms for performing various acid-base and blood gas calculations.
+Severinghaus<sup>[2](#reference2)</sup> and Thomas<sup>[3](#reference3)</sup> fitted curves to experimental data in the 1970s and published algorithms for performing various acid-base and blood gas calculations. Severinghaus also published derivations of Hill's Equation, including an inverse form, allowing for conversion of SO<sub>2</sub> to PO<sub>2</sub> and vice versa.
 
 ## Getting Started
 
@@ -75,12 +75,12 @@ pip install -e .
 
 ## References
 
-<a name="reference1">1</a>: Hill
+<a name="reference1">1</a>: Hill AV (1910) The possible effects of the aggregation of the molecules of haemoglobin on its dissociation curves. Journal of Physiology. 40 (Suppl): iv–vii
 
 <a name="reference2">2</a>: Severinghaus JW (1979). Simple, accurate equations for human blood O2 dissociation computations. Journal of Applied Physiology; 46: 599–602. [PMID:35496](https://www.ncbi.nlm.nih.gov/pubmed/35496)
 
 <a name="reference2">2</a>:Thomas LJ (1972). Algorithms for selected blood acid-base and blood gas calculations. Journal of Applied Physiology; 33: 154–158.
-https://www.ncbi.nlm.nih.gov/pubmed/5037404
+[PMID:5037404](https://www.ncbi.nlm.nih.gov/pubmed/5037404)
 
 ## License
 
