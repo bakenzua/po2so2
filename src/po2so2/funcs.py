@@ -1,16 +1,41 @@
 import numpy as np
 
-def so2_to_po2(so2):
+def mmhg_to_kpa(mmhg):
+    return mmhg * 0.133322387415
 
-    # 0.133322 is the conversion to kPa from torr/mmHg
-    return 0.133322387415 * np.exp((0.385 * np.log(np.reciprocal((1/so2)-1))) + 3.32 + (np.power(so2, 6)/-6) + (-1/(72 * so2)))
+def kpa_to_mmhg(kpa):
+    return kpa / 0.133322387415
 
-def po2_to_so2(po2):
+def hill_po2_to_so2(po2_arg, kpa=True):
+    if kpa:
+        p50 = mmhg_to_kpa(26.8)
+    else:
+        p50 = 26.8
+    nh = 2.7 # hill coefficient
+    return np.power((po2_arg/p50), nh) / (1 + np.power((po2_arg/p50), nh))
+
+def severinghaus_po2_to_so2(po2_arg, kpa=True):
+    if kpa:
+        po2 = kpa_to_mmhg(po2_arg)
+    else:
+        po2 = po2_arg
+    return 1 / ((23400 / (np.power(po2, 3) + (150 * po2))) + 1)
+
+
+def severinghaus_so2_to_po2(so2, kpa=True):
+    # TODO fix error on so2 = 0
+    # po2 returned in kPa
+    return mmhg_to_kpa(np.exp((0.385 * np.log(np.reciprocal((1/so2)-1))) + 3.32 + (np.power(so2, 6)/-6) + (-1/(72 * so2))))
+
+def thomas_po2_to_so2(po2_arg, kpa=True):
 
     # convert po2 from kPa to mmHg
     # because metric/SI
-    # published function works in mmHg
-    po2 = po2 / 0.133322387415
+    # published function units are mmHg
+    if kpa:
+        po2 = kpa_to_mmhg(po2_arg)
+    else:
+        po2 = po2_arg
 
     a1 = -8.5322289 * 10**3
     a2 = 2.1214010 * 10**3
